@@ -17,3 +17,7 @@
 # Add our plugin's bin diretory to user's path
 PLUGIN_D=$(dirname "$0")
 export PATH="${PATH}:${PLUGIN_D}/bin"
+
+alias bbo='git-bb-open'
+alias bbcpr='git-bb-create-pull-request'
+alias bblpr='git-bb-list-pull-requests'
