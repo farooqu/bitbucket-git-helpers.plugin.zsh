@@ -25,7 +25,7 @@ HTTPS_REGEX = /https:\/\/(?<host>[^\/]*)\/scm\/(?<project>[^\/]*)\/(?<repo>[^\.]
 def git_base_url
   matches = git_remote().match(SSH_REGEX)
   matches ||= git_remote().match(HTTPS_REGEX)
-  return "https://#{matches[:host]}/projects/#{matches[:project]}/repos/#{matches[:repo]}/"
+  return "https://#{matches[:host]}/projects/#{matches[:project]}/repos/#{matches[:repo]}"
 end
 
 def git_root
