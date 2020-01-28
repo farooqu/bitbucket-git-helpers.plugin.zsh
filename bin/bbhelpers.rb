@@ -19,6 +19,15 @@ def git_remote
   `git config --get remote.origin.url`.chomp
 end
 
+SSH_REGEX = /ssh:\/\/git@(?<host>[^\/]*)\/(?<project>[^\/]*)\/(?<repo>[^\.]*).git/
+HTTPS_REGEX = /https:\/\/(?<host>[^\/]*)\/scm\/(?<project>[^\/]*)\/(?<repo>[^\.]*).git/
+
+def git_base_url
+  matches = git_remote().match(SSH_REGEX)
+  matches ||= git_remote().match(HTTPS_REGEX)
+  return "https://#{matches[:host]}/projects/#{matches[:project]}/repos/#{matches[:repo]}/"
+end
+
 def git_root
   `git rev-parse --show-toplevel`.chomp
 end
